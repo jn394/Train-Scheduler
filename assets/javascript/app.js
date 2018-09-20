@@ -14,7 +14,6 @@ $(document).ready(function () {
 
     var trainName = "";
     var trainDes = "";
-    var trainTime = "";
     var trainFreq = "";
 
     $("#submitButton").on("click", function () {
@@ -50,6 +49,7 @@ $(document).ready(function () {
         var newNextTrain =  moment(nextTrain).format("hh:mm");
         console.log("Next train is: " + newNextTrain);
 
+        //Sets variables into the database 
         database.ref().push({
             trainName: trainName,
             trainDes: trainDes,
@@ -65,6 +65,7 @@ $(document).ready(function () {
         $("#train-Freq").val("");
     });
 
+    //Grabs the data from FireBase
     database.ref().orderByChild("dateAdded").on("child_added", function (snapshot) {
 
         // Log everything that's coming out of snapshot
